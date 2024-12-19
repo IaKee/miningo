@@ -1,4 +1,4 @@
-package com.example;
+package com.miningo;
 
 import net.fabricmc.api.ClientModInitializer;
 
