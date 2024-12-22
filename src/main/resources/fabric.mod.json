@@ -17,7 +17,7 @@
 			"com.miningo.MiningoMod"
 		],
 		"client": [
-			"com.miningo.ExampleModClient"
+			"com.miningo.MiningoModClient"
 		]
 	},
 	"mixins": [

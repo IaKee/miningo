@@ -1,24 +1,72 @@
 package com.miningo;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MiningoMod implements ModInitializer {
-	public static final String MOD_ID = "modid";
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
+public class MiningoMod implements ModInitializer {
+	public static final String MOD_ID = "miningo";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+
+	public MiningoSettings config;
 
 	@Override
 	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
+		LOGGER.info("Initializing Miningo!");
 
-		LOGGER.info("Hello Fabric world!");
+		// updates all mod settings
+		//loadConfig();
+
+		// TODO: test event, delete this
+		ChaosEventManager.initialize();
+	}
+
+	public void loadConfig(){
+		File configFile = new File("./config/miningo/miningo.json");
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+		if(configFile.exists()){
+			try (FileReader reader = new FileReader(configFile)) {
+				MiningoSettings newSettings = gson.fromJson(reader, MiningoSettings.class);
+				reader.close();
+			} catch (IOException e) {
+				LOGGER.error("Could not load Miningo settings:" + e.getMessage());
+			}
+		} else {
+			// if settings file does not exist, creates a new one with default values
+			config = new MiningoSettings();
+			saveConfig();
+		}
+	}
+
+	public void saveConfig() {
+		Gson gson = new Gson();
+		File file = new File("./config/miningo/miningo.json");
+
+		if(!file.getParentFile().exists()) {
+			// if parent directories does not exist
+			// creates them
+			boolean ok = file.getParentFile().mkdirs();
+			if(!ok){
+				LOGGER.error("Could not create folders for Miningo configuration!");
+				return;
+			}
+		}
+
+		try {
+			FileWriter writer = new FileWriter(file);
+			writer.write(gson.toJson(config));
+			writer.close();
+		} catch (IOException e) {
+			LOGGER.error("Could not save Miningo settings: " + e.getMessage());
+		}
 	}
 }
