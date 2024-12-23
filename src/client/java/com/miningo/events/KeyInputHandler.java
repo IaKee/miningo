@@ -1,5 +1,6 @@
 package com.miningo.events;
 
+import com.miningo.gui.BingoBoardScreen;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 
@@ -21,7 +22,11 @@ public class KeyInputHandler {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (bingoCardKey.wasPressed()) {
                 // TODO: Open Bingo Card
-                //client.player.sendChatMessage("Bingo Card");
+
+                //Text newText = Text.of("Bingo Card");
+                //client.player.sendMessage(newText, true);
+
+                client.setScreen(new BingoBoardScreen());
             }
         });
     }
