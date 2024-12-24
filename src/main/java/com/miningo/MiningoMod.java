@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.fabricmc.api.ModInitializer;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,6 +29,21 @@ public class MiningoMod implements ModInitializer {
 
 		// TODO: test event, delete this
 		ChaosEventManager.initialize();
+
+		TaskManager taskManager = new TaskManager();
+
+// Adicione tarefas
+		taskManager.addTask(new Task("Ordenhar uma vaca",
+				"Obtenha leite de uma vaca usando um balde.",
+				Items.MILK_BUCKET.getDefaultStack(),
+				1));
+
+		taskManager.addTask(new Task("Pack de pedra lisa",
+				"Obtenha 64 blocos de pedra lisa.",
+				Items.SMOOTH_STONE.getDefaultStack(),
+				64));
+
+		TaskManager.initialize();
 	}
 
 	public void loadConfig(){
