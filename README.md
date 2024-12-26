@@ -12,7 +12,7 @@ This template is available under the CC0 license. Feel free to learn from it and
 easy - 10 pontos 
 1 pack de pedra lisa
 colher 10 trigos
-tirar leite de uma vaca 
+tirar leite de uma vaca
 trocar com um villager 
 matar um creeper
 dar um item para um zombie
