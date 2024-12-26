@@ -9,12 +9,12 @@ For setup instructions please see the [fabric documentation page](https://docs.f
 This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
 
 ## Tasks
-easy - 10 pontos
-1 pack de pedra lisa
-colher 10 trigos
-tirar leite de uma vaca
-trocar com um villager
-matar um creeper
+easy - 10 pontos 
+1 pack de pedra lisa - v
+colher 10 trigos - v 
+tirar leite de uma vaca - v 
+trocar com um villager 
+matar um creeper - v
 dar um item para um zombie
 espiar alguem com luneta
 dar um osso para um lobo

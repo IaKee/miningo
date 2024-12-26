@@ -2,10 +2,15 @@ package com.miningo;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.miningo.task.EventTask;
+import com.miningo.task.ItemTask;
+import com.miningo.task.TaskManager;
 import net.fabricmc.api.ModInitializer;
 
-import net.minecraft.item.ItemStack;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Items;
+import net.minecraft.stat.Stats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,18 +35,31 @@ public class MiningoMod implements ModInitializer {
 		// TODO: test event, delete this
 		ChaosEventManager.initialize();
 
+
 		TaskManager taskManager = new TaskManager();
 
 // Adicione tarefas
-		taskManager.addTask(new Task("Ordenhar uma vaca",
+		taskManager.addTask(new ItemTask("Ordenhar uma vaca",
 				"Obtenha leite de uma vaca usando um balde.",
 				Items.MILK_BUCKET.getDefaultStack(),
 				1));
 
-		taskManager.addTask(new Task("Pack de pedra lisa",
+		taskManager.addTask(new ItemTask("Pack de pedra lisa",
 				"Obtenha 64 blocos de pedra lisa.",
 				Items.SMOOTH_STONE.getDefaultStack(),
 				64));
+
+		taskManager.addTask(new EventTask(
+				"Mate um Creeper",
+				"Derrote um Creeper pela primeira vez.",
+				EntityType.CREEPER
+				));
+
+		//taskManager.addTask(new EventTask(
+		//		"Troque com um Villager",
+		//		"Realize uma troca com um Villager pela primeira vez.",
+		//		player -> player.getStatHandler().getStat(Stats.TRADED_WITH_VILLAGER) > 0 // Verifica estatísticas
+		//));
 
 		TaskManager.initialize();
 	}
