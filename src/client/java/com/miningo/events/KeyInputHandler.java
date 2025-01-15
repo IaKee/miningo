@@ -1,5 +1,7 @@
 package com.miningo.events;
 
+import com.miningo.bingo.BingoSlot;
+import com.miningo.bingo.BingoTeam;
 import com.miningo.gui.BingoBoardScreen;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
@@ -8,6 +10,9 @@ import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 
 import org.lwjgl.glfw.GLFW;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class KeyInputHandler {
     public static final String KEY_CATEGORY_BINGO = "key.category.miningo.bingo";
@@ -26,7 +31,8 @@ public class KeyInputHandler {
                 //Text newText = Text.of("Bingo Card");
                 //client.player.sendMessage(newText, true);
 
-                client.setScreen(new BingoBoardScreen());
+
+                client.setScreen(new BingoBoardScreen(new ArrayList<>()));
             }
         });
     }

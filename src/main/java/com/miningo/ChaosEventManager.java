@@ -24,7 +24,6 @@ public class ChaosEventManager {
                 server.getWorlds().forEach(world -> {
                     if (world instanceof ServerWorld) {
                         triggerCreeperSpawn((ServerWorld) world);
-
                     }
                 });
             }
